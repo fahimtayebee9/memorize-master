@@ -1,0 +1,65 @@
+const Levels = [
+    {
+        "name" : "Easy",
+        "grid": 4,
+        "object": [
+            {"src" : "assets/img/easy/image85.jpg"},
+            {"src" : "assets/img/easy/image86.jpg"},
+            {"src" : "assets/img/easy/image88.jpg"},
+            {"src" : "assets/img/easy/image93.jpg"},
+            {"src" : "assets/img/easy/image110.jpg"},
+            {"src" : "assets/img/easy/image123.jpg"},
+        ],
+        "cover" : "assets/img/easy/image123.jpg",
+        "badge" : "badge-success",
+        "maxMoves" : 10,
+        "maxTime" : 180,
+    },
+    {
+        "name": "Medium",
+        "grid": 5,
+        "object": [
+            {"src" : "assets/img/medium/image3.jpg"},
+            {"src" : "assets/img/medium/image4.jpg"},
+            {"src" : "assets/img/medium/image5.jpg"},
+            {"src" : "assets/img/medium/image6.jpg"},
+            {"src" : "assets/img/medium/image7.jpg"},
+            {"src" : "assets/img/medium/image9.jpg"},
+            {"src" : "assets/img/medium/image12.jpg"},
+            {"src" : "assets/img/medium/image14.jpg"},
+            {"src" : "assets/img/medium/image16.jpg"},
+            {"src" : "assets/img/medium/image13.jpg"}
+        ],
+        "cover" : "assets/img/medium/image13.jpg",
+        "badge" : "badge-warning",
+        "maxMoves" : 15,
+        "maxTime" : 120,
+    },
+    {
+        "name" : "Hard",
+        "grid": 6,
+        "object": [
+            {"src" : "assets/img/hard/image6.jpg"},
+            {"src" : "assets/img/hard/image7.jpg"},
+            {"src" : "assets/img/hard/image13.jpg"},
+            {"src" : "assets/img/hard/image18.jpg"},
+            {"src" : "assets/img/hard/image20.jpg"},
+            {"src" : "assets/img/hard/image21.jpg"},
+            {"src" : "assets/img/hard/image22.jpg"},
+            {"src" : "assets/img/hard/image23.jpg"},
+            {"src" : "assets/img/hard/image24.jpg"},
+            {"src" : "assets/img/hard/image26.jpg"},
+            {"src" : "assets/img/hard/image33.jpg"},
+            {"src" : "assets/img/hard/image35.jpg"},
+            {"src" : "assets/img/hard/image36.jpg"},
+            {"src" : "assets/img/hard/image12.jpg"},
+            {"src" : "assets/img/hard/image31.jpg"},
+        ],
+        "cover" : "assets/img/hard/image36.jpg",
+        "badge" : "badge-danger",
+        "maxMoves" : 20,
+        "maxTime" : 90,
+    }
+];
+
+export default Levels;

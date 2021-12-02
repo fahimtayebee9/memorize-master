@@ -1,0 +1,71 @@
+/*================================= 
+        level-container
+=================================*/
+.levelContainer{
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+.level{
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    background: rgb(2 32 82 / 11%);
+    backdrop-filter: blur(35px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgb(14 14 14 / 10%);
+    padding: 15px;
+    overflow: hidden;
+}
+.level .content{
+    padding-top: 15px;
+    color: #fff;
+}
+
+.level .content h3{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px;
+    font-family: 'HelveticaNormal',sans-serif;
+}
+.level .content h3 span{
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0px;
+    font-family: 'HelveticaNormal',sans-serif;
+}
+.badgeCustom{
+    background: rgb(0, 112, 79);
+    padding: 8px 20px;
+}
+.level .content p{
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    font-family: 'HelveticaNormal',sans-serif;
+}
+.level .content .btnCustom{
+    background: rgb(52 33 68);
+    padding: 6px 34px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    outline: none;
+    border: none;
+    font-family: 'HelveticaNormal',sans-serif;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+.level .content .btnCustom:hover{
+    background: rgb(92 217 217);
+    color: rgb(24, 24, 24);
+}
+.level .content .btnCustom:focus, .level .content .btnCustom:active{
+    outline: none!important;
+    border: none!important;
+    box-shadow: none!important;
+}

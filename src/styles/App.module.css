@@ -1,0 +1,44 @@
+.mainContainer{
+    background-image: linear-gradient( 109.6deg,  rgba(20,30,48,1) 11.2%, rgba(36,59,85,1) 91.1% );
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    position: relative;
+}
+.dvx{
+    min-height: 100vh;
+}
+.mdl{
+    min-height: 50vh;
+    width: 100%;
+    position: relative;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.09);
+    padding: 30px 30px 30px 30px;
+    overflow: hidden;
+    margin: 70px 0px;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    font-family: 'Helvetica-Bold',sans-serif;
+    text-align: center;
+    text-shadow: 4 2px 3px #0c0c0c94;
+}
+.description{
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    font-family: 'HelveticaNormal',sans-serif;
+    text-align: center;
+
+}
