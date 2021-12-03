@@ -13,7 +13,7 @@ const Levels = [
         "cover" : "assets/img/easy/image123.jpg",
         "badge" : "badge-success",
         "maxMoves" : 12,
-        "maxTime" : 10,
+        "maxTime" : 120,
     },
     {
         "name": "Medium",

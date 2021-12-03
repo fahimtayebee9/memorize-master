@@ -45,8 +45,8 @@ const App = () => {
     }
 
     const handleGameOver = (value, moves, time) => {
-        setScoreTime(time);
-        setScoreMoves(moves);
+        setScoreTime(time === 0 ? Levels[level].maxTime : Levels[level].maxTime - time);
+        setScoreMoves(moves === 0 ? Levels[level].maxMoves : Levels[level].maxMoves - moves);
         setGameOver(value);
     }
 
@@ -59,6 +59,7 @@ const App = () => {
                 return card;
             })
         );
+        checkGameOver();
     }
 
     const checkGameOver = () => {
@@ -66,12 +67,11 @@ const App = () => {
         if (cardsMatched.length === cards.length) {
             setGameOver(true);
         }
-        console.log(cardsMatched.length);
     }
 
-    useEffect(() => {
-        checkGameOver();
-    } , [cards]);
+    // useEffect(() => {
+    //     checkGameOver();
+    // } , [cards]);
 
     useEffect(() => {
         if(isGameOver){

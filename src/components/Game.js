@@ -9,11 +9,12 @@ const GameComponent = (props) => {
     const [choiceTwo, setChoiceTwo] = React.useState([null]);
     const [moves, setMoves] = React.useState(props.level.maxMoves);
     const [timer, setTimer] = React.useState(props.level.maxTime);
-    const [maxTimeReached, setMaxTimeReached] = React.useState(false);
+    const [maxTimeReached, setMaxTimeReached]   = React.useState(false);
     const [maxMovesReached, setMaxMovesReached] = React.useState(false);
 
     const handleClick = (card) => {
         choiecOne ? setChoiceTwo(card) : setChoiceOne(card);
+        console.log(card);
     }
 
     const resetGameComponent = () => {
@@ -31,6 +32,14 @@ const GameComponent = (props) => {
         }
     }, [timer, props.level.maxTime]);
 
+    // useEffect(() => {
+    //     if (moves === 0) {
+    //         setMaxMovesReached(true);
+    //     } else {
+    //         setMoves(moves - 1);
+    //     }
+    // } , [moves, props.level.maxMoves]);
+
     useEffect(() => {
         if(maxMovesReached || maxTimeReached) {
             props.handleGameOver(true, moves, timer);
@@ -39,7 +48,7 @@ const GameComponent = (props) => {
     } , [maxTimeReached, maxMovesReached]);
 
     useEffect(() => {
-        if (choiecOne && choiceTwo) {
+        if (Boolean(choiecOne) && Boolean(choiceTwo)) {
             setTimeout(() => {
                 if (choiecOne.src === choiceTwo.src) {
                     choiecOne.isFlipped = true;
@@ -65,9 +74,6 @@ const GameComponent = (props) => {
         setChoiceTwo(null);
         setMoves((prevmove) => prevmove - 1);
         console.log( moves , "Executed");
-        if(moves === 0){
-            setMaxMovesReached(true);
-        }
     }
 
     return(
