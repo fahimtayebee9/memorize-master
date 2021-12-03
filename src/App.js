@@ -38,16 +38,16 @@ const App = () => {
 
     const endGame = () => {
         setIsGameStarted(false);
-        setPContent("d-none");
+        setPContent(appClasses.description + " d-block");
         setCards([]);
         setLevel(null);
+        setGameOver(false);
     }
 
     const handleGameOver = (value, moves, time) => {
         setScoreTime(time);
         setScoreMoves(moves);
         setGameOver(value);
-        endGame();
     }
 
     const handleCards = (cardOne, cardTwo) => {
@@ -61,10 +61,22 @@ const App = () => {
         );
     }
 
+    const checkGameOver = () => {
+        let cardsMatched = cards.filter((card) => card.isMatched);
+        if (cardsMatched.length === cards.length) {
+            setGameOver(true);
+        }
+        console.log(cardsMatched.length);
+    }
+
+    useEffect(() => {
+        checkGameOver();
+    } , [cards]);
+
     useEffect(() => {
         if(isGameOver){
             setColumn(10);
-            setRenderComponent(<GameOver moves={scoreMoves} timer={scoreTime} playAgain={endGame}/>);
+            setRenderComponent(<GameOver moves={scoreMoves} timer={scoreTime} endGame={endGame}/>);
         }
         else if(isGameStarted){
             setColumn(10);
@@ -74,7 +86,7 @@ const App = () => {
                                 handleGameOver={handleGameOver}/>
             );
         }
-        else{
+        else if(!isGameStarted || level === null || level === undefined || !isGameOver){
             setColumn(12);
             setRenderComponent(<LevelComponent startGame={startGame}/>);
         }

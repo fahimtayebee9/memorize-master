@@ -1,0 +1,34 @@
+.gameOver{
+    text-align: center;
+    color: white;
+    align-items: center;
+}
+.gameOver h1{
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #ef476f;
+    font-weight: bolder;
+    font-family: 'Poppins',sans-serif;
+}
+.gameOver h2{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #fed9b7;
+    font-family: 'Poppins',sans-serif;
+}
+.gameOver .btnCustom{
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 500;
+    background-color: aliceblue;
+    color: #f07167;
+    transition: all 0.3s ease-in-out;
+    margin-top: 25px;
+}
+.gameOver .btnCustom:hover{
+    background-color: #f07167;
+    color: aliceblue;
+    box-shadow: 0 0 10px 2px #f07167;
+}

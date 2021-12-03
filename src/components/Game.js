@@ -63,14 +63,11 @@ const GameComponent = (props) => {
     const reset = () => {
         setChoiceOne(null);
         setChoiceTwo(null);
-        setMoves(
-            () =>{
-                if(0 === moves) {
-                    setMaxMovesReached(true);
-                }
-                return (prevmove) => prevmove - 1;
-            }
-        );
+        setMoves((prevmove) => prevmove - 1);
+        console.log( moves , "Executed");
+        if(moves === 0){
+            setMaxMovesReached(true);
+        }
     }
 
     return(
