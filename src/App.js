@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import CircleContainer from "./components/CircleContainer";
 import Levels from "./components/Data";
 import GameComponent from "./components/Game";
+import GameOver from "./components/GameOver";
 import LevelComponent from "./components/LevelComponent";
 import appClasses from "./styles/App.module.css";
 
@@ -9,10 +10,13 @@ const App = () => {
     const [level, setLevel] = React.useState(0);
     const [pContent , setPContent]  = React.useState(appClasses.description + " d-block");
     const [isGameStarted, setIsGameStarted] = React.useState(false);
-    const [gameComponent, setGameComponent] = React.useState([null]);
+    const [renderComponent, setRenderComponent] = React.useState([null]);
     const [cards, setCards]         = React.useState([]);
-    const [moves, setMoves] = React.useState(0);
-    
+    const [isGameOver, setGameOver] = React.useState(false);
+    const [scoreMoves, setScoreMoves] = React.useState(0);
+    const [scoreTime, setScoreTime]   = React.useState(0);
+    const [column, setColumn]         = React.useState(0);
+
     useEffect(() => {
         if (isGameStarted) {
             setPContent('d-none');
@@ -24,7 +28,6 @@ const App = () => {
             return { ...card, isFlipped: false, isMatched: false, id: Math.random() };
         });
         setCards(shuffled);
-        setMoves(0);
     }
 
     const startGame = (level) => {
@@ -38,45 +41,60 @@ const App = () => {
         setPContent("d-none");
         setCards([]);
         setLevel(null);
-        setMoves(0);
     }
 
-    const handleCards = (cards) => {
-        setCards(cards);
-        console.log(cards);
+    const handleGameOver = (value, moves, time) => {
+        setScoreTime(time);
+        setScoreMoves(moves);
+        setGameOver(value);
+        endGame();
     }
 
-    const handleMoves = (moves) => {
-        setMoves(moves);
+    const handleCards = (cardOne, cardTwo) => {
+        setCards(
+            cards.map((card) => {
+                if (card.src === cardOne.src || card.src === cardTwo.src) {
+                    return { ...card, isMatched: cardOne.isMatched, isFlipped: cardOne.isFlipped };
+                }
+                return card;
+            })
+        );
     }
 
     useEffect(() => {
-        if(isGameStarted){
-            setGameComponent (
-                <GameComponent level={Levels[level]} endGame={endGame} isGameStarted={isGameStarted} 
-                                handleCards={handleCards} handleMoves={handleMoves} cards={cards} moves={moves}/>
+        if(isGameOver){
+            setColumn(10);
+            setRenderComponent(<GameOver moves={scoreMoves} timer={scoreTime} playAgain={endGame}/>);
+        }
+        else if(isGameStarted){
+            setColumn(10);
+            setRenderComponent (
+                <GameComponent level={Levels[level]} isGameStarted={isGameStarted} 
+                                setCards={setCards} handleCards={handleCards} cards={cards}
+                                handleGameOver={handleGameOver}/>
             );
         }
         else{
-            setGameComponent(<LevelComponent startGame={startGame}/>);
+            setColumn(12);
+            setRenderComponent(<LevelComponent startGame={startGame}/>);
         }
-    } , [isGameStarted]);
+    } , [isGameStarted, isGameOver]);
 
     return (
         <section className={appClasses.mainContainer}>
             <div className="container">
                 <div className={ appClasses.dvx + " row justify-content-center align-items-center"}>
-                    <div className={ !isGameStarted ? "col-md-12 m-auto position-relative" : "col-md-8 m-auto position-relative" }>
+                    <div className={`col-md-${column} m-auto position-relative`}>
                         
                         <CircleContainer />
                         
                         <div className={appClasses.mdl}>
-                            <h1 className={appClasses.title}>Memory Game</h1>
+                            <h1 className={appClasses.title}>Memorize Master</h1>
                             <p className={pContent}>Choose Level</p>
 
                             {/* LEVEL & GAME GRID */}
                             <div className="col-md-12">
-                                {gameComponent}
+                                {renderComponent}
                             </div>
                         </div>
                     </div>

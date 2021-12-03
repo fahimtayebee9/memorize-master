@@ -2,16 +2,13 @@
     margin-top: 20px;
 }
 .moves , .timer{
-    padding: 10px 25px;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.1);
     color: white;
     font-size: 18px;
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
+    padding: 10px 15px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
 }
 
 .gameContainer{

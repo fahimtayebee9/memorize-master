@@ -7,34 +7,55 @@ import Timer from './Timer';
 const GameComponent = (props) => {
     const [choiecOne, setChoiceOne] = React.useState([null]);
     const [choiceTwo, setChoiceTwo] = React.useState([null]);
+    const [moves, setMoves] = React.useState(props.level.maxMoves);
+    const [timer, setTimer] = React.useState(props.level.maxTime);
+    const [maxTimeReached, setMaxTimeReached] = React.useState(false);
+    const [maxMovesReached, setMaxMovesReached] = React.useState(false);
 
     const handleClick = (card) => {
         choiecOne ? setChoiceTwo(card) : setChoiceOne(card);
     }
 
+    const resetGameComponent = () => {
+        setMoves(props.level.maxMoves);
+        setTimer(props.level.maxTime);
+        setMaxTimeReached(false);
+        setMaxMovesReached(false);
+    }
+
+    useEffect(() => {
+        if (timer > 0) {
+            setTimeout(() => setTimer(timer - 1), 1000);
+        } else {
+            setMaxTimeReached(true);
+        }
+    }, [timer, props.level.maxTime]);
+
+    useEffect(() => {
+        if(maxMovesReached || maxTimeReached) {
+            props.handleGameOver(true, moves, timer);
+            resetGameComponent();
+        }
+    } , [maxTimeReached, maxMovesReached]);
+
     useEffect(() => {
         if (choiecOne && choiceTwo) {
             setTimeout(() => {
                 if (choiecOne.src === choiceTwo.src) {
-                    props.handleCards(
-                        props.cards.map((card) => {
-                            if (card.src === choiceTwo.src || card.src === choiecOne.src) {
-                                return { ...card, isMatched: true, isFlipped: true };
-                            }
-                            return card;
-                        })
-                    )
+                    choiecOne.isFlipped = true;
+                    choiecOne.isMatched = true;
+                    choiceTwo.isFlipped = true;
+                    choiceTwo.isMatched = true;
+                    props.handleCards(choiecOne, choiceTwo);
+                    reset();
                 } else {
-                    props.handleCards(
-                        props.cards.map((card) => {
-                            if (card.id === choiecOne.id || card.id === choiceTwo.id) {
-                                return { ...card, isFlipped: false, isMatched: false };
-                            }
-                            return card;
-                        })
-                    );
+                    choiecOne.isFlipped = false;
+                    choiecOne.isMatched = false;
+                    choiceTwo.isFlipped = false;
+                    choiceTwo.isMatched = false;
+                    props.handleCards(choiecOne, choiceTwo);
+                    reset();
                 }
-                reset();
             }, 2000);
         }
     } , [choiecOne, choiceTwo]);
@@ -42,17 +63,23 @@ const GameComponent = (props) => {
     const reset = () => {
         setChoiceOne(null);
         setChoiceTwo(null);
-        props.handleMoves(props.moves + 1);
+        setMoves(
+            () =>{
+                if(0 === moves) {
+                    setMaxMovesReached(true);
+                }
+                return (prevmove) => prevmove - 1;
+            }
+        );
     }
 
     return(
         <div className="div">
-            <div className="col-md-6 m-auto">
+            <div className="col-md-9 m-auto">
                 <div className={ gameClasses.displayGame + " d-flex align-items-center justify-content-between"}>
-                    
-                    <Move move={props.moves}/>
-                    
-                    <Timer time={props.level.maxTime}/>
+                    <Move move={moves}/>
+                        
+                    <Timer time={timer} maxTimeReached={maxTimeReached}/>
                 </div>
             </div>
             <div className="m-auto d-flex justify-content-center align-items-center">

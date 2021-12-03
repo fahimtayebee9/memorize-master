@@ -5,8 +5,6 @@ const SingleCard = (props) => {
         props.handleClick(props.card);
     }
 
-    console.log(props.isFlipped , props.isMatched);
-
     return (
         <div className={gameClasses.card} >
             <div className={ props.isFlipped || props.isMatched ? gameClasses.flipped : ""} >

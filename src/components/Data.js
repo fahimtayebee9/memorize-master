@@ -12,8 +12,8 @@ const Levels = [
         ],
         "cover" : "assets/img/easy/image123.jpg",
         "badge" : "badge-success",
-        "maxMoves" : 10,
-        "maxTime" : 180,
+        "maxMoves" : 12,
+        "maxTime" : 120,
     },
     {
         "name": "Medium",
@@ -33,7 +33,7 @@ const Levels = [
         "cover" : "assets/img/medium/image13.jpg",
         "badge" : "badge-warning",
         "maxMoves" : 15,
-        "maxTime" : 120,
+        "maxTime" : 150,
     },
     {
         "name" : "Hard",
@@ -57,8 +57,8 @@ const Levels = [
         ],
         "cover" : "assets/img/hard/image36.jpg",
         "badge" : "badge-danger",
-        "maxMoves" : 20,
-        "maxTime" : 90,
+        "maxMoves" : 18,
+        "maxTime" : 180,
     }
 ];
 
